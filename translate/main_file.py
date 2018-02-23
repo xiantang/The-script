@@ -31,12 +31,12 @@ class Thanslate(object):
         try:
             ta = json.loads(html)
             if(ta['translateResult'][0][0]['tgt'] == txt):
-                pass
-                # print('没有找到这个单词/词语！\n')
+
+                return txt
             elif ta['translateResult'][0][0]['tgt']==None:
                 # print(type(ta['translateResult'][0][0]['tgt']))
                 # print('翻译结果: %s \n' % (ta['translateResult'][0][0]['tgt']))
-                pass
+                return '没有找到这个单词/词语！\n'
             else:
                 return ta['translateResult'][0][0]['tgt']
         except:
@@ -98,7 +98,7 @@ class Thanslate(object):
                     translated_words.append(word + '({})'.format(translated_word))
 
         translated_sentence=' '.join(translated_words)
-        print(translated_sentence)
+        return translated_sentence
 if __name__ == '__main__':
     while True:
         txt = input('输入要翻译的内容!（输入0退出）\n===>')
@@ -106,6 +106,4 @@ if __name__ == '__main__':
             break
         else:
             Translator = Thanslate()
-            # Translator.thanslate(txt)
-            # Translator.full_content(txt)
-            Translator.split_sentence(text=txt)
+            Translator.thanslate(txt)
